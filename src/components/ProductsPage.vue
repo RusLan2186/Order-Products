@@ -19,14 +19,14 @@
 
     <div v-if="filteredProducts.length > 0">
       <div v-for="product in filteredProducts" :key="product.id" class="product-page">
-        <div class="product-circle" :class="{ 'free': product.isFree }"></div>
+        <div class="product-circle" :class="{ free: product.isFree }"></div>
         <img class="product-icon" :src="product.img" :alt="product.name" />
         <div class="product-name">
           <p>{{ product.name }}</p>
           <p>S/N {{ product.sn }}</p>
         </div>
         <div class="product-status">
-          <p style="color:#55a45e" v-if="product.isFree">Free</p>
+          <p style="color: #55a45e" v-if="product.isFree">Free</p>
           <p v-else>Under repair</p>
         </div>
         <div class="product-type">
@@ -74,9 +74,10 @@
 import removeIcon from '../icons/removeIcon.svg'
 import { mapGetters, mapMutations, mapState } from 'vuex'
 import Modal from './Modal.vue'
+import { formatDate, convertToUAH } from '../utils/utils'
 
 export default {
-  name: 'Products-data',
+  name: 'ProductsData',
   components: {
     Modal
   },
@@ -96,7 +97,6 @@ export default {
       searchQuery: ''
     }
   },
-
   computed: {
     ...mapState('data', ['products']),
     ...mapGetters('data', ['getOrders']),
@@ -106,14 +106,11 @@ export default {
       )
       return selectedOption ? selectedOption.text : 'Select option'
     },
-
     filteredProducts() {
       let products = this.products
-
       if (this.selectedFilter !== 'default') {
         products = products.filter((product) => product.type === this.selectedFilter)
       }
-
       if (this.searchQuery) {
         const query = this.searchQuery.toLowerCase()
         products = products.filter(
@@ -122,14 +119,11 @@ export default {
             product.specification.toLowerCase().includes(query)
         )
       }
-
       return products
     }
   },
-
   methods: {
     ...mapMutations('data', ['removeProductById']),
-
     openModal(product) {
       this.selectedProduct = product
       this.showModal = true
@@ -138,16 +132,13 @@ export default {
       this.showModal = false
       this.selectedProduct = null
     },
-
     toggleFilterList() {
       this.isVisibleFilterList = !this.isVisibleFilterList
     },
-
     selectFilter(value) {
       this.isVisibleFilterList = false
       this.selectedFilter = value
     },
-
     confirmDeleteProduct() {
       if (this.selectedProduct) {
         this.removeProductById(this.selectedProduct.id)
@@ -155,18 +146,8 @@ export default {
         this.showModal = false
       }
     },
-    convertToUAH(amount) {
-      const exchangeRate = 40
-      return (amount * exchangeRate).toFixed(2)
-    },
-    formatDate(date, format) {
-      const optionsShort = { day: '2-digit', month: '2-digit' }
-      const optionsLong = { day: '2-digit', month: 'short', year: 'numeric' }
-      const options = format === 'short' ? optionsShort : optionsLong
-
-      return new Date(date).toLocaleDateString('en-GB', options).replace(/ /g, '/').replace(',', '')
-    },
-
+    formatDate,
+    convertToUAH,
     getOrderDetails(orderId) {
       const order = this.getOrders.find((order) => order.id === orderId)
       return order
@@ -182,8 +163,9 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  max-width: 1600px;
-  margin: 0 auto;
+  padding: 0 100px;
+  /* max-width: 1600px; */
+  /* margin: 0 auto; */
 }
 
 .product-page__header {
@@ -192,7 +174,7 @@ export default {
   column-gap: 25px;
   align-items: center;
   margin-bottom: 30px;
-  width: 100%;
+  width: 650px;
 }
 
 .search-input {
@@ -258,7 +240,6 @@ export default {
   text-align: left;
   font-size: 16px;
 }
-
 
 .product-name {
   width: 20%;
