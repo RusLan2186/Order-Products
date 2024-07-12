@@ -33,33 +33,7 @@
 
     <div v-if="filteredProducts.length > 0">
       <div v-for="product in filteredProducts" :key="product.id" class="product-page">
-        <div class="product-circle" :class="{ free: product.isFree }"></div>
-        <img class="product-icon" :src="product.img" :alt="product.name" />
-        <div class="product-name">
-          <p>{{ product.name }}</p>
-          <p>S/N {{ product.sn }}</p>
-        </div>
-        <div class="product-status">
-          <p style="color: #55a45e" v-if="product.isFree">Free</p>
-          <p v-else>Under repair</p>
-        </div>
-        <div class="product-type">
-          <p>{{ product.type }}</p>
-        </div>
-
-        <div class="product-price">
-          <p>{{ product.price }}$</p>
-          <p>{{ convertToUAH(product.price) }} UAH</p>
-        </div>
-        <div class="product-guarantee">
-          <p>from {{ formatDate(product.guarantee.start, 'long') }}</p>
-          <p>to {{ formatDate(product.guarantee.end, 'long') }}</p>
-        </div>
-        <p class="product-order__title">Order: {{ getOrderDetails(product.order).title }}</p>
-        <div>
-          <p>Order Date: {{ getOrderDetails(product.order).date }}</p>
-        </div>
-
+        <ProductDetails :product="product" />
         <img
           class="remove-icon"
           :class="{ 'remove-icon__act': visibleProducts }"
@@ -80,20 +54,40 @@
       @delete="confirmDeleteProduct"
       @close="closeModal"
     >
+      <div>
+        <div class="product-page">
+          <div class="product-circle" :class="{ free: selectedProduct.isFree }"></div>
+          <img class="product-icon" :src="selectedProduct.img" :alt="selectedProduct.name" />
+          <div>
+            <p>{{ selectedProduct.name }}</p>
+            <P class="product-min"> S/N {{ selectedProduct.sn }}</P>
+          </div>
+
+          <div class="product-status">
+            <p style="color: #55a45e" v-if="selectedProduct.isFree">Free</p>
+            <p v-else>Under repair</p>
+          </div>
+          <div class="product-type">
+            <p>{{ selectedProduct.type }}</p>
+          </div>
+          <p>{{ selectedProduct.specification }}</p>
+        </div>
+      </div>
     </Modal>
   </div>
 </template>
 
 <script>
 import removeIcon from '../icons/removeIcon.svg'
-import { mapGetters, mapMutations, mapState } from 'vuex'
+import { mapMutations, mapState } from 'vuex'
 import Modal from './Modal.vue'
-import { formatDate, convertToUAH } from '../utils/utils'
+import ProductDetails from './ProductDetails.vue'
 
 export default {
   name: 'ProductsData',
   components: {
-    Modal
+    Modal,
+    ProductDetails
   },
   data() {
     return {
@@ -114,7 +108,6 @@ export default {
   },
   computed: {
     ...mapState('data', ['products']),
-    ...mapGetters('data', ['getOrders']),
     selectedFilterText() {
       const selectedOption = this.filterOptions.find(
         (option) => option.value === this.selectedFilter
@@ -160,14 +153,6 @@ export default {
         this.selectedProduct = null
         this.showModal = false
       }
-    },
-    formatDate,
-    convertToUAH,
-    getOrderDetails(orderId) {
-      const order = this.getOrders.find((order) => order.id === orderId)
-      return order
-        ? { title: order.title, date: this.formatDate(order.date, 'long') }
-        : { title: 'Unknown Order', date: 'Unknown Date' }
     },
     handleClearSearch() {
       this.isInputFocused = true
@@ -283,26 +268,6 @@ export default {
   padding: 10px 25px;
   text-align: left;
   font-size: 16px;
-}
-
-.product-name {
-  width: 20%;
-}
-
-.product-type {
-  width: 10%;
-}
-
-.product-price {
-  width: 10%;
-}
-
-.product-guarantee {
-  width: 15%;
-}
-
-.product-order__title {
-  width: 25%;
 }
 
 .no-products {
