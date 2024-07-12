@@ -161,6 +161,7 @@ export default {
   font-size: 22px;
   cursor: pointer;
   transition: 0.3s all ease 0s;
+  background-color: #ffff;
 }
 
 .min {
@@ -187,7 +188,7 @@ export default {
 
 .order-date {
   text-align: center;
-  width: 10%;
+  /* width: 10%; */
 }
 
 .order-price{
@@ -211,6 +212,7 @@ export default {
   border: 1px solid #ccc;
   padding: 20px 0;
   position: relative;
+  background-color: #ffff;
 }
 
 .hidden {

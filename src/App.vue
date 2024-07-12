@@ -30,6 +30,8 @@ export default {
   display: flex;
   flex-direction: column;
   height: 100vh;
+  background-color: #f1f5f6;
+  box-shadow: 0 0 30px 1px grey;
 }
 
 .top-menu {

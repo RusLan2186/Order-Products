@@ -241,8 +241,6 @@ export default {
   color: #fff;
 }
 
-
-
 .no-products {
   text-align: center;
   color: red;
