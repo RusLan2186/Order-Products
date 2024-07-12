@@ -1,8 +1,22 @@
 <template>
-  <div class="product-page__container">
+  <div @click="this.isVisibleFilterList = false" class="product-page__container">
     <div class="product-page__header">
       <h1 class="title">Products</h1>
-      <input type="text" placeholder="Search..." v-model="searchQuery" class="search-input" />
+      <div class="search__wrapper">
+        <input
+          type="text"
+          placeholder="Search..."
+          v-model="searchQuery"
+          class="search-input"
+          :class="{ expanded: isInputFocused }"
+          @focus="isInputFocused = true"
+          @blur="isInputFocused = false"
+        />
+        <span v-if="searchQuery" @mousedown.prevent="handleClearSearch" class="search__clear"
+          >X</span
+        >
+      </div>
+
       <div @click.stop class="filter__wrapper">
         Type: <span class="filter__title" @click="toggleFilterList">{{ selectedFilterText }}</span>
         <ul class="filter__list" v-if="isVisibleFilterList">
@@ -94,7 +108,8 @@ export default {
         { value: 'CPU', text: 'CPU' },
         { value: 'motherboard', text: 'Motherboard' }
       ],
-      searchQuery: ''
+      searchQuery: '',
+      isInputFocused: false
     }
   },
   computed: {
@@ -153,6 +168,10 @@ export default {
       return order
         ? { title: order.title, date: this.formatDate(order.date, 'long') }
         : { title: 'Unknown Order', date: 'Unknown Date' }
+    },
+    handleClearSearch() {
+      this.isInputFocused = true
+      this.searchQuery = ''
     }
   }
 }
@@ -163,22 +182,49 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 0 100px;
+  padding: 0px 100px;
 }
 
 .product-page__header {
   display: flex;
   justify-content: flex-start;
-  column-gap: 25px;
+  column-gap: 5px;
   align-items: center;
   margin-bottom: 30px;
-  width: 650px;
+  width: 700px;
+}
+
+.search__wrapper {
+  position: relative;
+  width: 60%;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  align-items: center;
 }
 
 .search-input {
   padding: 5px;
   font-size: 16px;
   margin-right: 20px;
+  transition: width 0.3s ease;
+  width: 200px;
+}
+.expanded {
+  width: calc(80% - 40px);
+  left: -20px;
+  outline: none;
+}
+
+.search__clear {
+  display: inline-block;
+  cursor: pointer;
+  transition: width 0.3s ease;
+  transform: translateX(-50px);
+}
+
+.search__clear:hover {
+  color: #55a45e;
 }
 
 .product-title {
@@ -263,10 +309,9 @@ export default {
   text-align: center;
   color: red;
 }
-@media (max-width: 1400px){
+@media (max-width: 1400px) {
   .product-page__container {
-  
-  padding: 0px;
-}
+    padding: 0px;
+  }
 }
 </style>

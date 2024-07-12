@@ -26,7 +26,6 @@ export default {
 </script>
 
 <style scoped>
-
 .app-container {
   display: flex;
   flex-direction: column;
@@ -53,9 +52,9 @@ export default {
 }
 
 .router-view {
-  margin-top: 150px;
+  margin-top: 120px;
   width: 100%;
   display: flex;
- padding: 0 25px;
+  padding: 0 25px;
 }
 </style>
