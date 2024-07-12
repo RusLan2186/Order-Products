@@ -133,7 +133,7 @@ export default {
 
 <style scoped>
 .order-container {
-  max-width: 100%;
+  max-width: 1600px;
   box-sizing: border-box;
   margin: 0 auto;
 }

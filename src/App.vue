@@ -56,5 +56,6 @@ export default {
   margin-top: 150px;
   width: 100%;
   display: flex;
+ padding: 0 25px;
 }
 </style>

@@ -182,7 +182,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  width: 1400px;
+  max-width: 1600px;
   margin: 0 auto;
 }
 
