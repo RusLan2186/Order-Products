@@ -5,7 +5,7 @@
       <div v-for="product in products" :key="product.id" class="product">
         <img class="product-icon" :src="product.img" :alt="product.name" />
         <div class="product-circle" :class="{ free: product.isFree }"></div>
-        <div class="product-name">
+        <div class="selected-product__name">
           <p>{{ product.name }}</p>
           <span>S/N {{ product.sn }}</span>
         </div>
@@ -35,6 +35,7 @@
       @delete="confirmDeleteProduct"
       @close="closeModal"
     >
+    <div><ModalHeader :selectedProduct="selectedProduct"/> </div>
     </Modal>
   </div>
 </template>
@@ -42,11 +43,13 @@
 <script>
 import removeIcon from '../icons/removeIcon.svg'
 import Modal from './Modal.vue'
+import ModalHeader from './ModalHeader.vue'
 
 export default {
   name: 'ProductsData',
   components: {
-    Modal
+    Modal,
+    ModalHeader
   },
   data() {
     return {
@@ -85,6 +88,9 @@ export default {
 </script>
 
 <style scoped>
+.selected-product__name{
+  width: 60%;
+}
 
 .no-products {
   text-align: center;

@@ -130,8 +130,6 @@ export default {
 
 <style scoped>
 .order-container {
-  /* max-width: 1600px; */
-  /* box-sizing: border-box; */
   margin: 0 auto;
 }
 
@@ -156,10 +154,10 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  column-gap: 30px;
+  column-gap: 50px;
   border: 1px solid #ccc;
   margin-bottom: 10px;
-  padding: 15px 30px;
+  padding: 10px 30px;
   font-size: 22px;
   cursor: pointer;
   transition: 0.3s all ease 0s;
@@ -189,6 +187,11 @@ export default {
 
 .order-date {
   text-align: center;
+  width: 10%;
+}
+
+.order-price{
+  width: 15%;
 }
 
 .snape {

@@ -54,25 +54,7 @@
       @delete="confirmDeleteProduct"
       @close="closeModal"
     >
-      <div>
-        <div class="product-page">
-          <div class="product-circle" :class="{ free: selectedProduct.isFree }"></div>
-          <img class="product-icon" :src="selectedProduct.img" :alt="selectedProduct.name" />
-          <div>
-            <p>{{ selectedProduct.name }}</p>
-            <P class="product-min"> S/N {{ selectedProduct.sn }}</P>
-          </div>
-
-          <div class="product-status">
-            <p style="color: #55a45e" v-if="selectedProduct.isFree">Free</p>
-            <p v-else>Under repair</p>
-          </div>
-          <div class="product-type">
-            <p>{{ selectedProduct.type }}</p>
-          </div>
-          <p>{{ selectedProduct.specification }}</p>
-        </div>
-      </div>
+    <ModalHeader :selectedProduct="selectedProduct"/>
     </Modal>
   </div>
 </template>
@@ -82,12 +64,14 @@ import removeIcon from '../icons/removeIcon.svg'
 import { mapMutations, mapState } from 'vuex'
 import Modal from './Modal.vue'
 import ProductDetails from './ProductDetails.vue'
+import ModalHeader from './ModalHeader.vue'
 
 export default {
   name: 'ProductsData',
   components: {
     Modal,
-    ProductDetails
+    ProductDetails,
+    ModalHeader
   },
   data() {
     return {
@@ -257,18 +241,7 @@ export default {
   color: #fff;
 }
 
-.product-page {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  column-gap: 30px;
-  border: 1px solid #ccc;
-  margin-bottom: 15px;
-  padding: 10px 25px;
-  text-align: left;
-  font-size: 16px;
-}
+
 
 .no-products {
   text-align: center;

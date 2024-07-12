@@ -60,31 +60,5 @@ export default {
 </script>
 
 <style>
-.product-name {
-  width: 20%;
-  display: flex;
-  flex-direction: column;
-  row-gap: 5px;
-}
 
-.product-type {
-  width: 10%;
-}
-
-.product-min {
-  opacity: 0.6;
-  font-size: 12px;
-}
-
-.product-price {
-  width: 10%;
-}
-
-.product-guarantee {
-  width: 15%;
-}
-
-.product-order__title {
-  width: 25%;
-}
 </style>
