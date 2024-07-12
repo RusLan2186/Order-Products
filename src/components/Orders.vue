@@ -130,8 +130,8 @@ export default {
 
 <style scoped>
 .order-container {
-  max-width: 1600px;
-  box-sizing: border-box;
+  /* max-width: 1600px; */
+  /* box-sizing: border-box; */
   margin: 0 auto;
 }
 
@@ -156,7 +156,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  column-gap: 80px;
+  column-gap: 30px;
   border: 1px solid #ccc;
   margin-bottom: 10px;
   padding: 15px 30px;
@@ -182,7 +182,7 @@ export default {
 }
 
 .order-name {
-  width: 500px;
+  width: 40%;
   text-decoration: underline;
   text-decoration-color: #ccc;
 }

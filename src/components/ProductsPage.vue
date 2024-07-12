@@ -164,8 +164,6 @@ export default {
   flex-direction: column;
   align-items: flex-start;
   padding: 0 100px;
-  /* max-width: 1600px; */
-  /* margin: 0 auto; */
 }
 
 .product-page__header {
@@ -264,5 +262,11 @@ export default {
 .no-products {
   text-align: center;
   color: red;
+}
+@media (max-width: 1400px){
+  .product-page__container {
+  
+  padding: 0px;
+}
 }
 </style>
