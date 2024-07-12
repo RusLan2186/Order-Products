@@ -1,11 +1,9 @@
-<!-- src/components/OrdersPage.vue -->
 <template>
   <div class="order-container">
     <div class="order-title">
       <h1>Orders /</h1>
       <span>{{ orders.length }}</span>
     </div>
-
     <div class="order-info">
       <ul class="order-list">
         <li v-for="order in orders" :key="order.id">
@@ -39,7 +37,11 @@
       <div v-if="visibleProducts" class="order-details">
         <div class="close" @click="closeOrder">X</div>
         <h2 class="selected-order__title">{{ selectedOrder.title }}</h2>
-        <Products :products="selectedOrder.products" :visibleProducts="visibleProducts" @deleteProduct="handleDeleteProduct" />
+        <Products
+          :products="selectedOrder.products"
+          :visibleProducts="visibleProducts"
+          @deleteProduct="handleDeleteProduct"
+        />
       </div>
     </div>
     <div v-if="orders.length === 0">
@@ -58,11 +60,11 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations, mapState } from 'vuex';
-import Products from './Products.vue';
-import Modal from './Modal.vue';
-import removeIcon from '../icons/removeIcon.svg';
-import { formatDate, totalAmount, convertToUAH } from '../utils/utils';
+import { mapGetters, mapMutations, mapState } from 'vuex'
+import Products from './Products.vue'
+import Modal from './Modal.vue'
+import removeIcon from '../icons/removeIcon.svg'
+import { formatDate, totalAmount, convertToUAH } from '../utils/utils'
 
 export default {
   name: 'OrdersPage',
@@ -76,47 +78,54 @@ export default {
       removeIcon,
       visibleProducts: false,
       showModal: false
-    };
+    }
   },
   computed: {
     ...mapState('data', ['products']),
     ...mapGetters('data', ['getOrders']),
     orders() {
-      return this.getOrders;
+      return this.getOrders
     }
   },
   methods: {
     ...mapMutations('data', ['removeOrderById']),
     selectOrder(order) {
-      this.selectedOrder = order;
-      this.visibleProducts = !this.visibleProducts;
+      this.selectedOrder = order
+      this.visibleProducts = !this.visibleProducts
     },
     closeOrder() {
-      this.selectedOrder = null;
-      this.visibleProducts = false;
+      this.selectedOrder = null
+      this.visibleProducts = false
     },
     openModal(order) {
-      this.selectedOrder = order;
-      this.showModal = true;
+      this.selectedOrder = order
+      this.showModal = true
     },
     closeModal() {
-      this.showModal = false;
+      this.showModal = false
     },
     confirmDeleteOrder() {
-      this.removeOrderById(this.selectedOrder.id);
-      this.selectedOrder = null;
-      this.showModal = false;
+      this.removeOrderById(this.selectedOrder.id)
+      this.selectedOrder = null
+      this.showModal = false
     },
     formatDate,
     totalAmount,
     convertToUAH,
     handleDeleteProduct(productId) {
       if (this.selectedOrder) {
-        this.selectedOrder.products = this.selectedOrder.products.filter(product => product.id !== productId);
+        this.selectedOrder.products = this.selectedOrder.products.filter(
+          (product) => product.id !== productId
+        )
+        if (this.selectedOrder.products.length === 0) {
+          this.removeOrderById(this.selectedOrder.id)
+          this.selectedOrder = null
+          this.visibleProducts = false
+        }
       }
     }
   }
-};
+}
 </script>
 
 <style scoped>
