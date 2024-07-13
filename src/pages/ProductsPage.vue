@@ -41,10 +41,10 @@
 <script>
 import removeIcon from '../icons/removeIcon.svg'
 import { mapMutations, mapState } from 'vuex'
-import Modal from './Modal.vue'
-import ProductDetails from './ProductDetails.vue'
-import ModalHeader from './ModalHeader.vue'
-import ProductFilter from './ProductsFilter.vue'
+import Modal from '../components/Modal.vue'
+import ProductDetails from '../components/ProductDetails.vue'
+import ModalHeader from '../components/ModalHeader.vue'
+import ProductFilter from '../components/ProductsFilter.vue'
 
 export default {
   name: 'ProductsData',

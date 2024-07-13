@@ -13,7 +13,7 @@ const router = createRouter({
     {
       path: '/products',
       name: 'products',
-      component: () => import('../components/ProductsPage.vue')
+      component: () => import('../pages/ProductsPage.vue')
     },
 
     {
@@ -24,7 +24,7 @@ const router = createRouter({
 
     {
       path: '/:pathMatch(.*)*', 
-      component: () => import('../components/NotFoundPage.vue')
+      component: () => import('../pages/NotFoundPage.vue')
     },
   ]
 })

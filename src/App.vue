@@ -14,8 +14,8 @@
 </template>
 
 <script>
-import TopMenu from './components/TopMenu.vue'
-import NavigationMenu from './components/NavigationMenu.vue'
+import TopMenu from './pages/TopMenu.vue'
+import NavigationMenu from './pages/NavigationMenu.vue'
 import { RouterView } from 'vue-router'
 
 export default {

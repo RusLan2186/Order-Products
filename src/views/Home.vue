@@ -5,7 +5,7 @@
 </template>
 
 <script setup>
-import Products from '@/components/ProductsPage.vue'
+import Products from '@/pages/ProductsPage.vue'
 </script>
 
 <style>
