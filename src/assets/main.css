@@ -87,11 +87,6 @@ li {
   height: 40px;
 }
 
-.product-specification {
-  width: 10%;
-  display: none;
-}
-
 .product-circle {
   width: 15px;
   height: 10px;
@@ -114,6 +109,11 @@ li {
 
 .product-type {
   width: 10%;
+}
+
+.product-specification {
+  width: 10%;
+  display: none;
 }
 
 .product-min {

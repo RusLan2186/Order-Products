@@ -2,8 +2,8 @@
   <Transition>
     <div class="modal-container" v-if="show">
       <div class="modal-content">
-        <h3>Are you sure you want to delete this {{title}}?</h3>
-        <slot> </slot>  
+        <h3 class="modal-title">Are you sure you want to delete this {{ title }}?</h3>
+        <slot> </slot>
         <div class="modal-buttons">
           <button class="cancel-button" @click="$emit('close')">Cancel</button>
           <button class="delete-button" @click="$emit('delete', order.id)">
@@ -22,7 +22,7 @@ import monitorIcon from '../icons/monitor.png'
 import removeIcon from '../icons/removeIcon_btn.svg'
 
 export default {
-
+  name: 'ModalPage',
   data() {
     return {
       monitorIcon,
@@ -81,7 +81,7 @@ export default {
   font-size: 20px;
 }
 
-h3 {
+.modal-title {
   margin-bottom: 30px;
   padding: 0 30px;
 }
@@ -93,7 +93,6 @@ h3 {
   justify-content: flex-end;
   align-items: center;
   height: 100px;
-  
 }
 
 .cancel-button {
@@ -112,10 +111,10 @@ h3 {
   background-color: #fff;
   display: flex;
   align-items: center;
-  column-gap:10px;
-border-radius: 20px;
+  column-gap: 10px;
+  border-radius: 20px;
   border: none;
-  color: #FF0000;
+  color: #ff0000;
   margin: 5px;
   padding: 10px 20px;
   font-size: 20px;
@@ -129,6 +128,6 @@ border-radius: 20px;
 
 .cancel-button:hover,
 .delete-button:hover {
-transform: scale(1.1);
+  transform: scale(1.1);
 }
 </style>
