@@ -1,35 +1,13 @@
 <template>
-  <div @click="this.isVisibleFilterList = false" class="product-page__container">
-    <div class="product-page__header">
-      <h1 class="title">Products</h1>
-      <div class="search__wrapper">
-        <input
-          type="text"
-          placeholder="Search..."
-          v-model="searchQuery"
-          class="search-input"
-          :class="{ expanded: isInputFocused }"
-          @focus="isInputFocused = true"
-          @blur="isInputFocused = false"
-        />
-        <span v-if="searchQuery" @mousedown.prevent="handleClearSearch" class="search__clear"
-          >X</span
-        >
-      </div>
-
-      <div @click.stop class="filter__wrapper">
-        Type: <span class="filter__title" @click="toggleFilterList">{{ selectedFilterText }}</span>
-        <ul class="filter__list" v-if="isVisibleFilterList">
-          <li
-            v-for="option in filterOptions"
-            :key="option.value"
-            @click="selectFilter(option.value)"
-          >
-            {{ option.text }}
-          </li>
-        </ul>
-      </div>
-    </div>
+  <div @click="hideFilterList" class="product-page__container">
+    <ProductFilter
+        :searchQuery="searchQuery"
+        :selectedFilter="selectedFilter"
+        :filterOptions="filterOptions"
+        @update:searchQuery="searchQuery = $event"
+        @update:selectedFilter="selectedFilter = $event"
+        ref="productFilter"
+      />
 
     <div v-if="filteredProducts.length > 0">
       <div v-for="product in filteredProducts" :key="product.id" class="product-page">
@@ -66,13 +44,15 @@ import { mapMutations, mapState } from 'vuex'
 import Modal from './Modal.vue'
 import ProductDetails from './ProductDetails.vue'
 import ModalHeader from './ModalHeader.vue'
+import ProductFilter from './ProductsFilter.vue'
 
 export default {
   name: 'ProductsData',
   components: {
     Modal,
     ProductDetails,
-    ModalHeader
+    ModalHeader,
+    ProductFilter
   },
   data() {
     return {
@@ -80,25 +60,17 @@ export default {
       showModal: false,
       selectedProduct: null,
       selectedFilter: 'default',
-      isVisibleFilterList: false,
       filterOptions: [
         { value: 'default', text: 'Default' },
         { value: 'monitors', text: 'Monitors' },
         { value: 'CPU', text: 'CPU' },
         { value: 'motherboard', text: 'Motherboard' }
       ],
-      searchQuery: '',
-      isInputFocused: false
+      searchQuery: ''
     }
   },
   computed: {
     ...mapState('data', ['products']),
-    selectedFilterText() {
-      const selectedOption = this.filterOptions.find(
-        (option) => option.value === this.selectedFilter
-      )
-      return selectedOption ? selectedOption.text : 'Select option'
-    },
     filteredProducts() {
       let products = this.products
       if (this.selectedFilter !== 'default') {
@@ -125,13 +97,6 @@ export default {
       this.showModal = false
       this.selectedProduct = null
     },
-    toggleFilterList() {
-      this.isVisibleFilterList = !this.isVisibleFilterList
-    },
-    selectFilter(value) {
-      this.isVisibleFilterList = false
-      this.selectedFilter = value
-    },
     confirmDeleteProduct() {
       if (this.selectedProduct) {
         this.removeProductById(this.selectedProduct.id)
@@ -139,9 +104,8 @@ export default {
         this.showModal = false
       }
     },
-    handleClearSearch() {
-      this.isInputFocused = true
-      this.searchQuery = ''
+    hideFilterList() {
+      this.$refs.productFilter.hideFilterList();
     }
   }
 }
@@ -155,97 +119,12 @@ export default {
   padding: 0px 100px;
 }
 
-.product-page__header {
-  display: flex;
-  justify-content: flex-start;
-  column-gap: 5px;
-  align-items: center;
-  margin-bottom: 30px;
-  width: 700px;
-}
-
-.search__wrapper {
-  position: relative;
-  width: 60%;
-  display: flex;
-  justify-content: center;
-  position: relative;
-  align-items: center;
-}
-
-.search-input {
-  padding: 5px;
-  font-size: 16px;
-  margin-right: 20px;
-  transition: width 0.3s ease;
-  width: 200px;
-}
-.expanded {
-  width: calc(80% - 40px);
-  left: -20px;
-  outline: none;
-}
-
-.search__clear {
-  display: inline-block;
-  cursor: pointer;
-  transition: width 0.3s ease;
-  transform: translateX(-50px);
-}
-
-.search__clear:hover {
-  color: #55a45e;
-}
-
-.product-title {
-  display: flex;
-  column-gap: 15px;
-  font-size: 20px;
-  width: 100%;
-}
-
-.filter__wrapper {
-  position: relative;
-  width: 20%;
-  z-index: 50;
-}
-
-.filter__title {
-  cursor: pointer;
-  margin-left: 5px;
-  transition: 0.3s all ease 0s;
-  color: #55a45e;
-}
-
-.filter__title:hover {
-  color: rgb(23, 23, 23);
-}
-
-.filter__list {
-  margin-top: 5px;
-  position: absolute;
-  cursor: pointer;
-  left: 0;
-  border: 2px solid #55a45e;
-  background-color: #fff;
-  border-radius: 12px;
-}
-
-.filter__list li {
-  padding: 5px 10px;
-  transition: 0.3s all ease 0s;
-  width: 100%;
-}
-
-.filter__list li:hover {
-  background-color: #55a45e;
-  color: #fff;
-}
 
 .no-products {
   text-align: center;
   color: red;
 }
+
 @media (max-width: 1400px) {
   .product-page__container {
     padding: 0px;
