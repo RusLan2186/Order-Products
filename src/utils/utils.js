@@ -14,3 +14,13 @@ export function convertToUAH(amount) {
   const exchangeRate = 40;
   return (amount * exchangeRate).toFixed(2);
 }
+
+export function closeModal() {
+  this.selectedProduct = null
+   this.showModal = false
+}
+
+export function openModal(product) {
+  this.selectedProduct = product
+  this.showModal = true
+}

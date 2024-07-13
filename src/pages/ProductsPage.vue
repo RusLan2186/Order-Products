@@ -1,13 +1,13 @@
 <template>
   <div @click="hideFilterList" class="product-page__container">
     <ProductFilter
-        :searchQuery="searchQuery"
-        :selectedFilter="selectedFilter"
-        :filterOptions="filterOptions"
-        @update:searchQuery="searchQuery = $event"
-        @update:selectedFilter="selectedFilter = $event"
-        ref="productFilter"
-      />
+      :searchQuery="searchQuery"
+      :selectedFilter="selectedFilter"
+      :filterOptions="filterOptions"
+      @update:searchQuery="searchQuery = $event"
+      @update:selectedFilter="selectedFilter = $event"
+      ref="productFilter"
+    />
 
     <div v-if="filteredProducts.length > 0">
       <div v-for="product in filteredProducts" :key="product.id" class="product-page">
@@ -45,6 +45,8 @@ import Modal from '../components/Modal.vue'
 import ProductDetails from '../components/ProductDetails.vue'
 import ModalHeader from '../components/ModalHeader.vue'
 import ProductFilter from '../components/ProductsFilter.vue'
+import { closeModal } from '@/utils/utils'
+import { openModal } from '@/utils/utils'
 
 export default {
   name: 'ProductsData',
@@ -89,14 +91,9 @@ export default {
   },
   methods: {
     ...mapMutations('data', ['removeProductById']),
-    openModal(product) {
-      this.selectedProduct = product
-      this.showModal = true
-    },
-    closeModal() {
-      this.showModal = false
-      this.selectedProduct = null
-    },
+    openModal,
+    closeModal,
+
     confirmDeleteProduct() {
       if (this.selectedProduct) {
         this.removeProductById(this.selectedProduct.id)
@@ -105,7 +102,7 @@ export default {
       }
     },
     hideFilterList() {
-      this.$refs.productFilter.hideFilterList();
+      this.$refs.productFilter.hideFilterList()
     }
   }
 }

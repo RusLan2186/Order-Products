@@ -48,6 +48,7 @@ import { mapGetters, mapMutations, mapState } from 'vuex'
 import Products from './Products.vue'
 import Modal from './Modal.vue'
 import OrderList from './OrderList.vue'
+import { closeModal } from '@/utils/utils'
 
 export default {
   name: 'OrdersPage',
@@ -76,13 +77,13 @@ export default {
       this.selectedOrder = null
       this.visibleProducts = false
     },
+
     openModal(order) {
       this.selectedOrder = order
       this.showModal = true
     },
-    closeModal() {
-      this.showModal = false
-    },
+    closeModal,
+
     confirmDeleteOrder() {
       this.removeOrderById(this.selectedOrder.id)
       this.selectedOrder = null
@@ -105,7 +106,7 @@ export default {
         this.closeOrder()
         this.visibleProducts = false
       } else {
-        this.selectedOrder = this.orders.find(order => order.id === orderId)
+        this.selectedOrder = this.orders.find((order) => order.id === orderId)
         this.visibleProducts = true
       }
     }

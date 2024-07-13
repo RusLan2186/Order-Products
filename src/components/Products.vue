@@ -14,31 +14,30 @@
         <div class="product-status">
           <p style="color: #55a45e" v-if="product.isFree">Free</p>
           <p v-else>Under repair</p>
-         
         </div>
         <div>
-            <img
-              v-if="visibleProducts"
-              class="remove-icon"
-              :class="{ 'remove-icon__act': visibleProducts }"
-              :src="removeIcon"
-              alt="remove"
-              @click.stop="openModal(product)"
-            />
-          </div>
+          <img
+            v-if="visibleProducts"
+            class="remove-icon"
+            :class="{ 'remove-icon__act': visibleProducts }"
+            :src="removeIcon"
+            alt="remove"
+            @click.stop="openModal(product)"
+          />
+        </div>
       </div>
     </div>
     <teleport to="#modals">
-    <Modal
-      :order="selectedProduct"
-      :show="showModal"
-      title="product"
-      @delete="confirmDeleteProduct"
-      @close="closeModal"
-    >
-   <ModalHeader :selectedProduct="selectedProduct"/> 
-    </Modal>
-  </teleport>
+      <Modal
+        :order="selectedProduct"
+        :show="showModal"
+        title="product"
+        @delete="confirmDeleteProduct"
+        @close="closeModal"
+      >
+        <ModalHeader :selectedProduct="selectedProduct" />
+      </Modal>
+    </teleport>
   </div>
 </template>
 
@@ -46,6 +45,8 @@
 import removeIcon from '../icons/removeIcon.svg'
 import Modal from './Modal.vue'
 import ModalHeader from './ModalHeader.vue'
+import { closeModal } from '@/utils/utils'
+import { openModal } from '@/utils/utils'
 
 export default {
   name: 'ProductsData',
@@ -70,14 +71,9 @@ export default {
     }
   },
   methods: {
-    openModal(product) {
-      this.selectedProduct = product
-      this.showModal = true
-    },
-    closeModal() {
-      this.showModal = false
-      this.selectedProduct = null
-    },
+    openModal,
+    closeModal,
+
     confirmDeleteProduct() {
       if (this.selectedProduct) {
         this.$emit('deleteProduct', this.selectedProduct.id)
@@ -90,7 +86,7 @@ export default {
 </script>
 
 <style scoped>
-.selected-product__name{
+.selected-product__name {
   width: 60%;
 }
 
