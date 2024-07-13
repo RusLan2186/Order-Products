@@ -47,16 +47,19 @@
     <div v-if="orders.length === 0">
       <h1>No orders at the moment</h1>
     </div>
+    <teleport to="#modals">
+    <Modal
+      :order="selectedOrder"
+      :show="showModal"
+      title="order"
+      @delete="confirmDeleteOrder"
+      @close="closeModal"
+    >
+      <Products :products="selectedOrder.products" />
+    </Modal>
+  </teleport>
   </div>
-  <Modal
-    :order="selectedOrder"
-    :show="showModal"
-    title="order"
-    @delete="confirmDeleteOrder"
-    @close="closeModal"
-  >
-    <Products :products="selectedOrder.products" />
-  </Modal>
+ 
 </template>
 
 <script>
@@ -191,7 +194,7 @@ export default {
   /* width: 10%; */
 }
 
-.order-price{
+.order-price {
   width: 15%;
 }
 

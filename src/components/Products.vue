@@ -28,6 +28,7 @@
           </div>
       </div>
     </div>
+    <teleport to="#modals">
     <Modal
       :order="selectedProduct"
       :show="showModal"
@@ -37,6 +38,7 @@
     >
     <div><ModalHeader :selectedProduct="selectedProduct"/> </div>
     </Modal>
+  </teleport>
   </div>
 </template>
 

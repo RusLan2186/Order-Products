@@ -6,7 +6,9 @@
 
     <div class="main-container">
       <div><navigation-menu /></div>
-      <div class="router-view"><RouterView /></div>
+      <div class="router-view">
+        <Transition> <RouterView /> </Transition>
+      </div>
     </div>
   </div>
 </template>
@@ -58,5 +60,15 @@ export default {
   width: 100%;
   display: flex;
   padding: 0 25px;
+}
+.v-enter-active,
+.v-leave-active {
+  transition: transform 0.7s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+  transform:translate(500px)
 }
 </style>

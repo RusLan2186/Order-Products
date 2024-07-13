@@ -66,7 +66,7 @@ export const products = [
 
   {
     id: 5,
-    name: 'ASUS  tuf gaming b450-plus ii',
+    name: 'ASUS  tuf gaming b450-plus',
     sn: "MBD-2024-07-10-0001",
     img: "https://ipc2u.ru/upload/medialibrary/243/gyst0a0b3mtkfyk485jf0fjl97vno3hj.png",
     type: 'motherboard',

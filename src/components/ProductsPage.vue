@@ -46,16 +46,17 @@
     <div v-else class="no-products">
       <h1>No products at the moment</h1>
     </div>
-
-    <Modal
-      :order="selectedProduct"
-      :show="showModal"
-      title="product"
-      @delete="confirmDeleteProduct"
-      @close="closeModal"
-    >
-    <ModalHeader :selectedProduct="selectedProduct"/>
-    </Modal>
+    <teleport to="#modals">
+      <Modal
+        :order="selectedProduct"
+        :show="showModal"
+        title="product"
+        @delete="confirmDeleteProduct"
+        @close="closeModal"
+      >
+        <ModalHeader :selectedProduct="selectedProduct" />
+      </Modal>
+    </teleport>
   </div>
 </template>
 
