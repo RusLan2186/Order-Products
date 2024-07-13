@@ -36,7 +36,7 @@
       @delete="confirmDeleteProduct"
       @close="closeModal"
     >
-    <div><ModalHeader :selectedProduct="selectedProduct"/> </div>
+   <ModalHeader :selectedProduct="selectedProduct"/> 
     </Modal>
   </teleport>
   </div>

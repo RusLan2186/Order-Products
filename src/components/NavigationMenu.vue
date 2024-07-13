@@ -44,6 +44,11 @@ import { RouterLink } from 'vue-router'
   text-decoration: none;
   height: 35px;
   box-sizing: border-box;
+  text-replace: none;
+}
+
+.links a:hover{
+  color:#55a45e;
 }
 
 .router-link-exact-active {

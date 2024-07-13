@@ -5,33 +5,15 @@
       <span>{{ orders.length }}</span>
     </div>
     <div class="order-info">
-      <ul class="order-list">
-        <li v-for="order in orders" :key="order.id">
-          <div class="order" :class="{ min: visibleProducts }" @click="selectOrder(order)">
-            <p v-if="!visibleProducts" class="order-name">{{ order.title }}</p>
-            <div class="order-length">
-              <p>{{ order.products.length }}</p>
-              <span>Products</span>
-            </div>
-            <div class="order-date">
-              <span>{{ formatDate(order.date, 'short') }}</span>
-              <p>{{ formatDate(order.date, 'long') }}</p>
-            </div>
-            <div v-if="!visibleProducts" class="order-price">
-              <span>{{ totalAmount(order.products) }}$</span>
-              <p>{{ convertToUAH(totalAmount(order.products)) }} UA</p>
-            </div>
-            <img
-              class="remove-icon"
-              :class="{ hidden: visibleProducts }"
-              :src="removeIcon"
-              alt="remove"
-              @click.stop="openModal(order)"
-            />
-            <div v-if="visibleProducts && selectedOrder.id === order.id" class="snape">
-              <span>></span>
-            </div>
-          </div>
+      <ul>
+        <li class="order-list" v-for="order in orders" :key="order.id">
+          <OrderList
+            :order="order"
+            :visibleProducts="visibleProducts"
+            :selectedOrderId="selectedOrder?.id"
+            @selectOrder="selectOrder"
+            @removeOrder="openModal"
+          />
         </li>
       </ul>
       <div v-if="visibleProducts" class="order-details">
@@ -48,37 +30,35 @@
       <h1>No orders at the moment</h1>
     </div>
     <teleport to="#modals">
-    <Modal
-      :order="selectedOrder"
-      :show="showModal"
-      title="order"
-      @delete="confirmDeleteOrder"
-      @close="closeModal"
-    >
-      <Products :products="selectedOrder.products" />
-    </Modal>
-  </teleport>
+      <Modal
+        :order="selectedOrder"
+        :show="showModal"
+        title="order"
+        @delete="confirmDeleteOrder"
+        @close="closeModal"
+      >
+        <Products :products="selectedOrder.products" />
+      </Modal>
+    </teleport>
   </div>
- 
 </template>
 
 <script>
 import { mapGetters, mapMutations, mapState } from 'vuex'
 import Products from './Products.vue'
 import Modal from './Modal.vue'
-import removeIcon from '../icons/removeIcon.svg'
-import { formatDate, totalAmount, convertToUAH } from '../utils/utils'
+import OrderList from './OrderList.vue'
 
 export default {
   name: 'OrdersPage',
   components: {
     Products,
-    Modal
+    Modal,
+    OrderList
   },
   data() {
     return {
       selectedOrder: null,
-      removeIcon,
       visibleProducts: false,
       showModal: false
     }
@@ -92,10 +72,6 @@ export default {
   },
   methods: {
     ...mapMutations('data', ['removeOrderById']),
-    selectOrder(order) {
-      this.selectedOrder = order
-      this.visibleProducts = !this.visibleProducts
-    },
     closeOrder() {
       this.selectedOrder = null
       this.visibleProducts = false
@@ -112,9 +88,6 @@ export default {
       this.selectedOrder = null
       this.showModal = false
     },
-    formatDate,
-    totalAmount,
-    convertToUAH,
     handleDeleteProduct(productId) {
       if (this.selectedOrder) {
         this.selectedOrder.products = this.selectedOrder.products.filter(
@@ -125,6 +98,15 @@ export default {
           this.selectedOrder = null
           this.visibleProducts = false
         }
+      }
+    },
+    selectOrder(orderId) {
+      if (this.selectedOrder?.id === orderId) {
+        this.closeOrder()
+        this.visibleProducts = false
+      } else {
+        this.selectedOrder = this.orders.find(order => order.id === orderId)
+        this.visibleProducts = true
       }
     }
   }
@@ -147,70 +129,16 @@ export default {
   font-size: 25px;
   font-weight: 700;
 }
+
 .order-info {
   display: flex;
   column-gap: 20px;
   align-items: flex-start;
 }
 
-.order {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  column-gap: 50px;
-  border: 1px solid #ccc;
-  margin-bottom: 10px;
-  padding: 10px 30px;
-  font-size: 22px;
-  cursor: pointer;
-  transition: 0.3s all ease 0s;
-  background-color: #ffff;
+.order-list {
 }
 
-.min {
-  padding: 0 0px 0 30px;
-  height: 100px;
-  justify-content: flex-start;
-  column-gap: 50px;
-}
-
-.order:hover {
-  background-color: #f2f2f2;
-}
-
-.order span {
-  font-size: 19px;
-  opacity: 0.6;
-}
-
-.order-name {
-  width: 40%;
-  text-decoration: underline;
-  text-decoration-color: #ccc;
-}
-
-.order-date {
-  text-align: center;
-  /* width: 10%; */
-}
-
-.order-price {
-  width: 15%;
-}
-
-.snape {
-  background-color: #ccc;
-  height: 100px;
-  width: 70px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.snape span {
-  color: #fff;
-  font-size: 26px;
-}
 .order-details {
   border: 1px solid #ccc;
   padding: 20px 0;
@@ -218,12 +146,15 @@ export default {
   background-color: #ffff;
 }
 
-.hidden {
-  display: none;
-}
-
 .selected-order__title {
   margin-bottom: 20px;
   padding: 0 30px;
+}
+
+.min {
+  padding: 0 0px 0 30px;
+  height: 100px;
+  justify-content: flex-start;
+  column-gap: 50px;
 }
 </style>
