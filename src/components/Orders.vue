@@ -136,9 +136,6 @@ export default {
   align-items: flex-start;
 }
 
-.order-list {
-}
-
 .order-details {
   border: 1px solid #ccc;
   padding: 20px 0;

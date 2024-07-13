@@ -18,19 +18,16 @@ import { RouterLink } from 'vue-router'
   display: flex;
   flex-direction: column;
   width: 200px;
-  
 }
 .links {
   width: 100%;
   display: flex;
   flex-direction: column;
   row-gap: 10px;
-  /* margin-top: 100px; */
   align-items: center;
-  /* justify-content: center; */
-   position: fixed; 
+  position: fixed;
   left: 0px;
-  top: 130px; 
+  top: 130px;
   width: 150px;
 }
 
@@ -47,8 +44,8 @@ import { RouterLink } from 'vue-router'
   text-replace: none;
 }
 
-.links a:hover{
-  color:#55a45e;
+.links a:hover {
+  color: #55a45e;
 }
 
 .router-link-exact-active {

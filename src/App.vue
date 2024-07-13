@@ -61,14 +61,16 @@ export default {
   display: flex;
   padding: 0 25px;
 }
+
 .v-enter-active,
 .v-leave-active {
-  transition: transform 0.7s ease;
+  transition: all 0.9s ease;
 }
 
 .v-enter-from,
 .v-leave-to {
   opacity: 0;
-  transform:translate(500px)
+  transform:translate(-100px)
+
 }
 </style>

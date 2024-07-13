@@ -119,7 +119,6 @@ export default {
   padding: 0px 100px;
 }
 
-
 .no-products {
   text-align: center;
   color: red;
