@@ -43,33 +43,33 @@ Communication protocol that allows real-time data transfer between client and se
 
 1. Clone the repository:
    
-    ```bash
-    git clone https://github.com/RusLan2186/Order-Products.git
-    ```
+```bash
+git clone https://github.com/RusLan2186/Order-Products.git
+```
     
 3. Navigate to the project directory:
    
-    ```bash
-    cd Order-Products
-    ```
+```bash
+cd Order-Products
+```
     
 4. Install dependencies:
    
-    ```bash
-    npm install
-    ```
+```bash
+npm install
+```
     
 5. Run the application:
    
-    ```bash
-    npm run dev
-    ```bash
+```bash
+npm run dev
+```
     
 7. Lint the code:
    
-    ```
-    npm run lint
-    ```bash
+```bash
+npm run lint
+```
 
 ## Deploying to GitHub Pages
 
@@ -81,7 +81,7 @@ Communication protocol that allows real-time data transfer between client and se
 
 3. Deploy to GitHub Pages:
    
-    ```bash
-    npm run deploy
-    ```bash
+```bash
+npm run deploy
+```
 
