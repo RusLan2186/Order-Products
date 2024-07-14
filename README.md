@@ -18,25 +18,25 @@ This Vue.js application is designed for managing orders and products. Key featur
 - **Vue.js (v3):**
 For building the user interface.
 
-- VueX:
+- **VueX:**
 A state management pattern and library for Vue.js applications.
 
-- CSS:
+- **CSS:**
 For styling the components.
 
-- Linters and Formatters:
+- **Linters and Formatters:**
 Tools used to analyze and improve code quality. 
 
-- REST:
+- **REST:**
 An architectural style for designing networked applications.
 
-- Git:
+- **Git:**
 A distributed version control system for tracking changes in source code during software development. 
 
-- Docker:
+- **Docker:**
 A platform for developing, shipping, and running applications inside containers. The Docker container for this project runs on port 8080.
 
-- WebSocket:
+- **WebSocket:**
 Communication protocol that allows real-time data transfer between client and server.
 
 ## Installation and Running
