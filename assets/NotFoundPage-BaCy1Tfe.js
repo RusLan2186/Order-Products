@@ -1,0 +1,1 @@
+import{_ as t,d as e,b as s,f as o}from"./index-BpthYSgD.js";const n={},c={class:"not-found"},_=o("h1",null,"404",-1),a=o("p",null,"Not found",-1),d=[_,a];function r(f,i,l,p,u,h){return s(),e("div",c,d)}const $=t(n,[["render",r]]);export{$ as default};
