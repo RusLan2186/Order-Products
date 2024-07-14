@@ -15,28 +15,28 @@ This Vue.js application is designed for managing orders and products. Key featur
 
 ## Technologies used
 
-- Vue.js (v3)
+- Vue.js (v3).
 For building the user interface.
 
-- VueX
+- VueX.
 A state management pattern and library for Vue.js applications.
 
-- CSS Architecture (BEM or Scoped Styles)
+- CSS.
 For styling the components.
 
-- Linters and Formatters
+- Linters and Formatters.
 Tools used to analyze and improve code quality. 
 
-- REST
+- REST.
 An architectural style for designing networked applications.
 
-- Git
+- Git.
 A distributed version control system for tracking changes in source code during software development. 
 
-- Docker
+- Docker.
 A platform for developing, shipping, and running applications inside containers. The Docker container for this project runs on port 8080.
 
-- WebSocket (WS)
+- WebSocket.
 Communication protocol that allows real-time data transfer between client and server.
 
 ## Installation and Running
@@ -47,25 +47,25 @@ Communication protocol that allows real-time data transfer between client and se
 git clone https://github.com/RusLan2186/Order-Products.git
 ```
     
-3. Navigate to the project directory:
+2. Navigate to the project directory:
    
 ```bash
 cd Order-Products
 ```
     
-4. Install dependencies:
+3. Install dependencies:
    
 ```bash
 npm install
 ```
     
-5. Run the application:
+4. Run the application:
    
 ```bash
 npm run dev
 ```
     
-7. Lint the code:
+5. Lint the code:
    
 ```bash
 npm run lint
@@ -79,7 +79,7 @@ npm run lint
  npm run build
  ```
 
-3. Deploy to GitHub Pages:
+2. Deploy to GitHub Pages:
    
 ```bash
 npm run deploy
