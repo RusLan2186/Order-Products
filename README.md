@@ -9,34 +9,34 @@ This Vue.js application is designed for managing orders and products. Key featur
 - **The application includes separate pages.**
 - **Navigation Menu component** with route links to Orders and Products pages.
 - **TopMenu component** displaying the current date and time in real-time and a counter to show the number of active sessions in real-time.
--  **Orders and Products components.** Each Order has its own Products.
--  **Orders component functionality** allowing users to choose on a specific order to view its details. Display information for each order: name, number of products, creation dates in two formats, total sum in two currencies, and a delete button.
--  **Products component** displaying all products with a filter by product type. Display fields for each product: name, type, warranty dates in different formats, price in different currencies, and order name.
+- **Orders and Products components.** Each Order has its own Products.
+- **Orders component functionality allowing users to choose a specific order to view its details and delete the chosen order. Display information for each order: name, number of products, creation dates, total sum in UA and $, and an opportunity to delete the product.
+- **Products component displaying all products with a filter by product type and search. Display fields for each product: name, type, warranty dates, price in UA and $, and order name.
 
 ## Technologies used
 
-- Vue.js (v3).
+- Vue.js (v3):
 For building the user interface.
 
-- VueX.
+- VueX:
 A state management pattern and library for Vue.js applications.
 
-- CSS.
+- CSS:
 For styling the components.
 
-- Linters and Formatters.
+- Linters and Formatters:
 Tools used to analyze and improve code quality. 
 
-- REST.
+- REST:
 An architectural style for designing networked applications.
 
-- Git.
+- Git:
 A distributed version control system for tracking changes in source code during software development. 
 
-- Docker.
+- Docker:
 A platform for developing, shipping, and running applications inside containers. The Docker container for this project runs on port 8080.
 
-- WebSocket.
+- WebSocket:
 Communication protocol that allows real-time data transfer between client and server.
 
 ## Installation and Running
