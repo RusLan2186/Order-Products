@@ -9,9 +9,9 @@ This Vue.js application is designed for managing orders and products. Key featur
 - **The application includes separate pages.**
 - **Navigation Menu component** with route links to Orders and Products pages.
 - **TopMenu component** displaying the current date and time in real-time and a counter to show the number of active sessions in real-time.
-- **Orders and Products components.** Each Order has its own Products.
-- **Orders component functionality allowing users to choose a specific order to view its details and delete the chosen order. Display information for each order: name, number of products, creation dates, total sum in UA and $, and an opportunity to delete the product.
-- **Products component displaying all products with a filter by product type and search. Display fields for each product: name, type, warranty dates, price in UA and $, and order name.
+- **Orders and Products components** Each Order has its own Products.
+- **Orders component functionality** allowing users to choose a specific order to view its details and delete the chosen order. Display information for each order: name, number of products, creation dates, total sum in UA and $, and an opportunity to delete the product.
+- **Products component** displaying all products with a filter by product type and search. Display fields for each product: name, type, warranty dates, price in UA and $, and order name.
 
 ## Technologies used
 
