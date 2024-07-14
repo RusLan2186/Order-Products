@@ -15,7 +15,7 @@ This Vue.js application is designed for managing orders and products. Key featur
 
 ## Technologies used
 
-- Vue.js (v3):
+- **Vue.js (v3):**
 For building the user interface.
 
 - VueX:
