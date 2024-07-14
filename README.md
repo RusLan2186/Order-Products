@@ -1,16 +1,17 @@
 # Vue.js Application for Order and Product Management
 
+-  [DEMO LINK](https://ruslan2186.github.io/Order-Products/#/)  
+
 ## Description
 
 This Vue.js application is designed for managing orders and products. Key features include:
 
-1. **Component layout based on example screenshots.**
-2. **The application includes separate pages.**
-3. **Navigation Menu component** with route links to Orders and Products pages.
-4. **TopMenu component** displaying the current date and time in real-time (top-right corner) and a counter using Socket.io to show the number of active sessions in real-time.
-5. **Orders and Products components.** Each Order has its own Products.
-6. **Orders component functionality** allowing users to click on a specific order to view its details, which can be closed. Display information for each order: name, number of products, creation dates in two formats, total sum in two currencies, and a delete button that opens a popup.
-7. **Products component** displaying all products with a filter by product type. Display fields for each product: name, type, warranty dates in different formats, price in different currencies, and order name.
+- **The application includes separate pages.**
+- **Navigation Menu component** with route links to Orders and Products pages.
+- **TopMenu component** displaying the current date and time in real-time (top-right corner) and a counter using Socket.io to show the number of active sessions in real-time.
+-  **Orders and Products components.** Each Order has its own Products.
+-  **Orders component functionality** allowing users to click on a specific order to view its details, which can be closed. Display information for each order: name, number of products, creation dates in two formats, total sum in two currencies, and a delete button that opens a popup.
+-  **Products component** displaying all products with a filter by product type. Display fields for each product: name, type, warranty dates in different formats, price in different currencies, and order name.
 
 ## Installation and Running
 
