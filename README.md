@@ -46,30 +46,30 @@ Communication protocol that allows real-time data transfer between client and se
     git clone https://github.com/RusLan2186/Order-Products.git
     ```
 2. Navigate to the project directory:
-    ```sh
+    ```
     cd Order-Products
     ```
 3. Install dependencies:
-    ```sh
+    ```
     npm install
     ```
 4. Run the application:
-    ```sh
+    ```
     npm run dev
     ```
 5. Lint the code:
-    ```sh
+    ```
     npm run lint
     ```
 
 ## Deploying to GitHub Pages
 
 1. Build the project:
-    ```sh
+    ```
     npm run build
     ```
 2. Deploy to GitHub Pages:
-    ```sh
+    ```
     npm run deploy
     ```
 
