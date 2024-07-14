@@ -13,30 +13,30 @@ This Vue.js application is designed for managing orders and products. Key featur
 -  **Orders component functionality** allowing users to choose on a specific order to view its details. Display information for each order: name, number of products, creation dates in two formats, total sum in two currencies, and a delete button.
 -  **Products component** displaying all products with a filter by product type. Display fields for each product: name, type, warranty dates in different formats, price in different currencies, and order name.
 
-## Required Tools for Developers
+## Technologies used
 
-### Vue.js (v3)
+- Vue.js (v3)
 For building the user interface.
 
-### VueX
+- VueX
 A state management pattern and library for Vue.js applications.
 
-### CSS Architecture (BEM or Scoped Styles)
+- CSS Architecture (BEM or Scoped Styles)
 For styling the components.
 
-### Linters and Formatters
+- Linters and Formatters
 Tools used to analyze and improve code quality. 
 
-### REST
+- REST
 An architectural style for designing networked applications.
 
-### Git
+- Git
 A distributed version control system for tracking changes in source code during software development. 
 
-### Docker
+- Docker
 A platform for developing, shipping, and running applications inside containers. The Docker container for this project runs on port 8080.
 
-### WebSocket (WS)
+- WebSocket (WS)
 Communication protocol that allows real-time data transfer between client and server.
 
 ## Installation and Running
